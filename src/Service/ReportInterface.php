@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Optime\SimpleReport\Service;
+namespace Optime\SimpleReport\Bundle\Service;
 
 
 interface ReportInterface

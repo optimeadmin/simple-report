@@ -1,0 +1,3 @@
+Optime\SimpleReport\Bundle\Controller\:
+  resource: '../src/Controller/'
+  tags: [ 'controller.service_arguments' ]

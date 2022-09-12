@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Optime\SimpleReport\Service;
+namespace Optime\SimpleReport\Bundle\Service;
 
 
-use App\Entity\SimpleReport;
+use Optime\SimpleReport\Bundle\Entity\SimpleReport;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
@@ -26,15 +26,9 @@ class GenericReportGenerator implements ServiceSubscriberInterface
         $this->generator = $generator;
     }
 
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
-        return [
-            'registration-question'=>QuestionUserEventService::class,
-            'users-challenges'=>ChallengesReport::class,
-            'qa-report'=>QAReport::class,
-            'polls-service'=>PollsReport::class,
-            'quizes-tries'=>QuizTriesReport::class,
-        ];
+        return [];
     }
 
     public function generate(SimpleReport $simpleReport)

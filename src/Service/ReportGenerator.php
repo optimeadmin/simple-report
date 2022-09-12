@@ -4,12 +4,11 @@
  * User: Oscar
  */
 
-namespace Optime\SimpleReport\Service;
+namespace Optime\SimpleReport\Bundle\Service;
 
 
-use App\Entity\SimpleReport;
-use App\Repository\SimpleReportRepository;
-use App\Services\Event\Provider\CurrentEventProvider;
+use Optime\SimpleReport\Bundle\Entity\SimpleReport;
+use Optime\SimpleReport\Bundle\Repository\SimpleReportRepository;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -58,14 +57,12 @@ class ReportGenerator
     public function __construct(SimpleReportRepository $simpleReportRepository,
                                 XLSXGenerator $xlsxGenerator,
                                 EntityManagerInterface $entityManager,
-                                CurrentEventProvider $eventProvider,
                                 Stopwatch $stopwatch,
                                 LoggerInterface $logger = null)
     {
         $this->simpleReportRepository = $simpleReportRepository;
         $this->xlsxGenerator = $xlsxGenerator;
         $this->entityManager = $entityManager;
-        $this->eventProvider = $eventProvider;
         $this->stopwatch = $stopwatch;
         $this->logger = $logger;
     }
@@ -87,10 +84,6 @@ class ReportGenerator
     protected function getQueryResult($query): \Generator
     {
         $parameters = [];
-        if ($this->searchTagIntoQueryString('event_id')) {
-            $event = $this->eventProvider->getFromCurrentRequest();
-            $parameters['event_id'] = $event->getId();
-        }
 
         $conn = $this->entityManager->getConnection();
 

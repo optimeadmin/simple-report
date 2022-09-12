@@ -1,8 +1,8 @@
 <?php
 
-namespace Optime\SimpleReport\Repository;
+namespace Optime\SimpleReport\Bundle\Repository;
 
-use App\Entity\SimpleReport;
+use Optime\SimpleReport\Bundle\Entity\SimpleReport;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

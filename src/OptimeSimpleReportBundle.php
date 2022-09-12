@@ -1,10 +1,9 @@
 <?php
 
-namespace Optime\SimpleReport;
+namespace Optime\SimpleReport\Bundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-
 
 class OptimeSimpleReportBundle extends Bundle
 {

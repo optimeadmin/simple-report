@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reports{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row align-items-center">
+            <div class="col col-md-6">
+                <div class="title_generic title_report py-5">
+                    Reports
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <table class="table table-striped table-reportes ">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for report in reports %}
+                    <tr>
+                        <td>
+                            {{ report.name }}
+                        </td>
+                        <td>
+                            {% if report.type == 'service' %}
+                                <a href="{{ path('reports_from_service',{'slug':report.slug}) }}">Download</a>
+                            {% else %}
+                                <a href="{{ path('reports_generator',{'slug':report.slug}) }}">Download</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,16 +1,14 @@
 <?php
 
-namespace Optime\SimpleReport\Entity;
+namespace Optime\SimpleReport\Bundle\Entity;
 
-use App\Repository\SimpleReportRepository;
-use App\Util\TimestampableEntity;
+use Optime\SimpleReport\Repository\SimpleReportRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SimpleReportRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 class SimpleReport
 {
-    use TimestampableEntity;
 
     public const ACTIVE = true;
     public const INACTIVE = false;
