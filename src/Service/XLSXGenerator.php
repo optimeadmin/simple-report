@@ -4,7 +4,7 @@
  * User: Oscar
  */
 
-namespace Optime\SimpleReport\Service;
+namespace Optime\SimpleReport\Bundle\Service;
 
 use Symfony\Component\HttpFoundation\Response;
 

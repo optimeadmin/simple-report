@@ -12,10 +12,7 @@
   "require": {
     "php": ">=8.0.0",
     "symfony/framework-bundle": "^5.2|^6.0",
-    "doctrine/annotations": "^1.0",
-    "doctrine/doctrine-bundle": "^2.7",
-    "doctrine/doctrine-migrations-bundle": "^3.2",
-    "doctrine/orm": "^2.13"
+    "mk-j/php_xlsxwriter": "^0.38"
   },
   "autoload": {
     "psr-4": {

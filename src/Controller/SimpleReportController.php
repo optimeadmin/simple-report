@@ -6,10 +6,9 @@
 
 namespace Optime\SimpleReport\Bundle\Controller;
 
-use Optime\SimpleReport\Entity\SimpleReport;
-use Optime\SimpleReport\Service\GenericReportGenerator;
-use Optime\SimpleReport\Service\QuestionUserEventService;
-use Optime\SimpleReport\Service\ReportGenerator;
+use Optime\SimpleReport\Bundle\Entity\SimpleReport;
+use Optime\SimpleReport\Bundle\Service\GenericReportGenerator;
+use Optime\SimpleReport\Bundle\Service\ReportGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 

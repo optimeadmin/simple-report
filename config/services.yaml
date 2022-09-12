@@ -1,3 +1,17 @@
-Optime\SimpleReport\Bundle\Controller\:
-  resource: '../src/Controller/'
-  tags: [ 'controller.service_arguments' ]
+parameters:
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Optime\SimpleReport\Bundle\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/Entity/'
+      - '../src/OptimeSimpleReportBundle.php'
+
+  Optime\SimpleReport\Bundle\Controller\:
+    resource: '../src/Controller/'
+    tags: [ 'controller.service_arguments' ]
