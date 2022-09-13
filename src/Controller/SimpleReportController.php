@@ -24,7 +24,7 @@ class SimpleReportController extends AbstractController
     {
         $reports = $reportGenerator->getActiveReports();
 
-        return $this->render('reports/index.html.twig', [
+        return $this->render('@OptimeSimpleReport/views/index.html.twig', [
             'reports'=>$reports
         ]);
     }

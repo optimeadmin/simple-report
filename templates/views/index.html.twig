@@ -29,9 +29,9 @@
                         </td>
                         <td>
                             {% if report.type == 'service' %}
-                                <a href="{{ path('reports_from_service',{'slug':report.slug}) }}">Download</a>
+                                <a href="{{ path('simplereport_from_service',{'slug':report.slug}) }}">Download</a>
                             {% else %}
-                                <a href="{{ path('reports_generator',{'slug':report.slug}) }}">Download</a>
+                                <a href="{{ path('simplereport_generator',{'slug':report.slug}) }}">Download</a>
                             {% endif %}
                         </td>
                     </tr>

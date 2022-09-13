@@ -175,10 +175,7 @@ class ReportGenerator
 
     public function getExcelHeaders(SimpleReport $simpleReport)
     {
-        $event = $this->eventProvider->getFromCurrentRequest();
 
-        $headers[] = ['Client Name', $event->getClient()->getName()];
-        $headers[] = ['Event Name', $event->getName()];
         $headers[] = ['Report Name', $simpleReport->getName()];
         $headers[] = ['Download Date', date('m-d-Y h:i a')];
         $headers[] = [' ', ' '];
