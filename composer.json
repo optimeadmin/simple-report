@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": ">=8.1.0",
-    "symfony/framework-bundle": "^5.2|^6.0",
+    "symfony/framework-bundle": "^5.4|^6.0",
     "mk-j/php_xlsxwriter": "^0.38",
     "easycorp/easyadmin-bundle": "^4.0"
   },
