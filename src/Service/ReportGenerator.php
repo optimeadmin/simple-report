@@ -13,7 +13,6 @@ use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag("monolog.logger", ['channel' => 'report'])]
 class ReportGenerator
@@ -39,32 +38,16 @@ class ReportGenerator
     private $entityManager;
 
     /**
-     * @var CurrentEventProvider
-     */
-    private $eventProvider;
-    /**
-     * @var Stopwatch
-     */
-    private Stopwatch $stopwatch;
-    /**
-     * @var LoggerInterface|null
-     */
-    private ?LoggerInterface $logger;
-
-    /**
      * ReportGenerator constructor.
      */
     public function __construct(SimpleReportRepository $simpleReportRepository,
                                 XLSXGenerator $xlsxGenerator,
-                                EntityManagerInterface $entityManager,
-                                Stopwatch $stopwatch,
-                                LoggerInterface $logger = null)
+                                EntityManagerInterface $entityManager
+                                )
     {
         $this->simpleReportRepository = $simpleReportRepository;
         $this->xlsxGenerator = $xlsxGenerator;
         $this->entityManager = $entityManager;
-        $this->stopwatch = $stopwatch;
-        $this->logger = $logger;
     }
 
     /**
@@ -95,25 +78,15 @@ class ReportGenerator
 
     public function generateReportFromSlug($slug)
     {
-        $this->stopwatch->start('slugReport');
-
         $this->getSimpleReportBySlug($slug);
+
+        if(is_null($this->simpleReport)) {
+            return false;
+        }
 
         $headers = $this->getExcelHeaders($this->simpleReport);
 
-        if(!is_null($this->logger)) {
-            $this->logger->info('Validando memoria antes de la consulta',[
-                'info'=>(string) $this->stopwatch->lap('slugReport'),
-                'memory_limit'=>ini_get('memory_limit')
-            ]);
-        }
         $rows = $this->getQueryResult($this->simpleReport->getQueryString());
-
-        if(!is_null($this->logger)) {
-            $this->logger->info('Validando memoria despues de la consulta',[
-                'info'=>(string) $this->stopwatch->lap('slugReport'),
-            ]);
-        }
 
         if($rows->valid()) {
             $headers[] = array_keys($rows->current());
@@ -123,11 +96,6 @@ class ReportGenerator
 
         $this->xlsxGenerator->setHeaders($headers);
         $this->xlsxGenerator->setRows($rows);
-        if(!is_null($this->logger)) {
-            $this->logger->info('Seteo de rows',[
-                'info'=>(string) $this->stopwatch->lap('slugReport')
-            ]);
-        }
         unset($rows);
 
         $this->xlsxGenerator->setFilename($this->simpleReport->getName());

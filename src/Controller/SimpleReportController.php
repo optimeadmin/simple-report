@@ -6,6 +6,7 @@
 
 namespace Optime\SimpleReport\Bundle\Controller;
 
+use http\Client\Response;
 use Optime\SimpleReport\Bundle\Entity\SimpleReport;
 use Optime\SimpleReport\Bundle\Service\GenericReportGenerator;
 use Optime\SimpleReport\Bundle\Service\ReportGenerator;
@@ -34,7 +35,13 @@ class SimpleReportController extends AbstractController
      */
     public function generator($slug, ReportGenerator $reportGenerator)
     {
-        return $reportGenerator->generateReportFromSlug($slug);
+        $response = $reportGenerator->generateReportFromSlug($slug);
+
+        if(!$response) {
+            throw $this->createNotFoundException('This report is not available');
+        }else{
+            return $response;
+        }
     }
 
     /**
@@ -42,6 +49,9 @@ class SimpleReportController extends AbstractController
      */
     public function fromService(SimpleReport $simpleReport, GenericReportGenerator $genericReportGenerator)
     {
+        if(!$simpleReport->getActive()) {
+            throw $this->createNotFoundException('This report is not available');
+        }
         return $genericReportGenerator->generate($simpleReport);
     }
 }

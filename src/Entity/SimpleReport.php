@@ -2,7 +2,7 @@
 
 namespace Optime\SimpleReport\Bundle\Entity;
 
-use Optime\SimpleReport\Repository\SimpleReportRepository;
+use Optime\SimpleReport\Bundle\Repository\SimpleReportRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SimpleReportRepository::class)]
