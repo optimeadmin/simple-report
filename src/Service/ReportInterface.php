@@ -9,4 +9,6 @@ interface ReportInterface
 
     public function getDataArray();
 
+    public static function getSlug(): string;
+
 }

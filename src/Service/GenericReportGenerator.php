@@ -8,7 +8,7 @@ use Optime\SimpleReport\Bundle\Entity\SimpleReport;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
-class GenericReportGenerator implements ServiceSubscriberInterface
+class GenericReportGenerator
 {
     /**
      * @var ContainerInterface
@@ -21,14 +21,9 @@ class GenericReportGenerator implements ServiceSubscriberInterface
 
     public function __construct(ContainerInterface $reports, ReportGenerator $generator)
     {
-
         $this->reports = $reports;
         $this->generator = $generator;
-    }
-
-    public static function getSubscribedServices(): array
-    {
-        return [];
+        //dd($reports);
     }
 
     public function generate(SimpleReport $simpleReport)

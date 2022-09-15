@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Optime\SimpleReport\Bundle\DependencyInjection;
 
+use Optime\SimpleReport\Bundle\Service\ReportInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -21,6 +22,7 @@ class OptimeSimpleReportExtension extends Extension
             new FileLocator(__DIR__ . '/../../config')
         );
         $loader->load('services.yaml');
+        $container->registerForAutoconfiguration(ReportInterface::class)->addTag('optime_simple_report.report');
 
     }
 }
